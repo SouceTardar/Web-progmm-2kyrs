@@ -1,7 +1,8 @@
-from flask import Flask
-app = Flask(_name_)
 
- @app.route("/")
- def start():
-    returne "web-сервер на flask"
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def start():
+   return "web-сервер на flask"
     
