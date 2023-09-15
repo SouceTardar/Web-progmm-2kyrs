@@ -1,22 +1,24 @@
-from flask import Flask
+from flask import Flask, redirect
 app = Flask(__name__)
 
 @app.route("/")
 @app.route("/index")
 def start():
+   return redirect("/menu", code = 302)
+
+@app.route("/menu")
+def menu():
    return """
       <!DOCTYPE html>
       <html>
          <head>
-            <title>Козицкий Владислав и Штагауэр Максим. Лабораторная работа 1</title>
+            <title>Козицкий Владислав и Штагауэр Максим. Лабораторные работы</title>
          </head>
 
          <body>
             <header>
                <h1>НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных</h1> web-сервер на flask
             </header>
-            
-            <h2>Лабораторная работа №1</h2>
 
             <footer>
                   &copy; Козицкий Владислав и Штагауэр Максим, ФБИ-12, 3 курс 2023
@@ -24,8 +26,6 @@ def start():
          </body>
       </html>
 """
-
-
 
 @app.route("/lab1")
 def lab1():
@@ -40,7 +40,6 @@ def lab1():
             <header>
                   НГТУ, ФБ, Лабораторная работа 1
             </header>
-            <h1>web-сервер на flask</h1>
             <div>
                   Flask — фреймворк для создания веб-приложений на языке
                   программирования Python, использующий набор инструментов
