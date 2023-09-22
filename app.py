@@ -139,8 +139,8 @@ def python():
 
 @app.route('/lab2/example') 
 def example():
-   name = 'Козикций Владислав и Штангауэр Максим'
-   nomerLab = 2
-   grupa = 12
-   kyrs = 3
+   name = ''
+   nomerLab = '2'
+   grupa = ''
+   kyrs = ''
    return render_template('example.html', name=name, nomerLab=nomerLab, grupa=grupa, kyrs=kyrs)
