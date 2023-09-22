@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 app = Flask(__name__)
 
 @app.route("/")
@@ -136,3 +136,11 @@ def python():
    </body>
 </html>
    '''
+
+@app.route('/lab2/example') 
+def example():
+   name = 'Козикций Владислав и Штангауэр Максим'
+   nomerLab = 2
+   grupa = 12
+   kyrs = 3
+   return render_template('example.html', name=name, nomerLab=nomerLab, grupa=grupa, kyrs=kyrs)
