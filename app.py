@@ -139,8 +139,17 @@ def python():
 
 @app.route('/lab2/example') 
 def example():
-   name = ''
+   name = 'Козицкий Владислав и Штагауэр Максим'
    nomerLab = '2'
-   grupa = ''
-   kyrs = ''
-   return render_template('example.html', name=name, nomerLab=nomerLab, grupa=grupa, kyrs=kyrs)
+   grupa = 'ФБИ-12'
+   kyrs = '3 курс'
+   fruits = [
+      {'name': 'яблоки', 'price': 100},
+      {'name': 'груши', 'price': 115},
+      {'name': 'апельсины', 'price': 95},
+      {'name': 'мандарины', 'price': 80},
+      {'name': 'манго', 'price': 310},
+   ]
+   return render_template('example.html', 
+                          name=name, nomerLab=nomerLab, grupa=grupa, kyrs=kyrs,
+                          fruits=fruits)
