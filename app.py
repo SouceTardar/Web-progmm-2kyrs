@@ -88,6 +88,9 @@ def oak():
    <body style="margin-left: 5%; padding: 50px;">
       <h1>Мудрый Дуб</h1>
       <img src="''' + url_for('static', filename='oak.jpg') + '''">
+      <footer>
+         &copy; Козицкий Владислав и Штагауэр Максим, ФБИ-12, 3 курс 2023
+       </footer>
    </body>
 </html>
    '''
@@ -109,6 +112,9 @@ def student():
       <h1>Козицкий Владислав Сергеевич</h1>
       <h1>Штангауэр Максим Максимович</h1>
       <img style="height: 250px; width: 250px;" src="''' + url_for('static', filename='NSTU.jpeg') + '''">
+      <footer>
+         &copy; Козицкий Владислав и Штагауэр Максим, ФБИ-12, 3 курс 2023
+      </footer>
    </body>
 </html>
    '''
@@ -133,6 +139,9 @@ def python():
       разработчика, читаемости кода и его качества, а также на обеспечение переносимости написанных
       на нём программ.</h3>
       <img style="height: 250px; width: 250px;" src="''' + url_for('static', filename='PYTHON.png') + '''">
+      <footer>
+         &copy; Козицкий Владислав и Штагауэр Максим, ФБИ-12, 3 курс 2023
+      </footer>
    </body>
 </html>
    '''
@@ -174,3 +183,7 @@ def example():
    return render_template('example.html', 
                           name=name, nomerLab=nomerLab, grupa=grupa, kyrs=kyrs,
                           fruits=fruits, books=books)
+
+@app.route('/lab2/') 
+def lab2():
+   return render_template('lab2.html')
