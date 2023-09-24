@@ -21,7 +21,7 @@ def menu():
                <h1>НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных</h1> web-сервер на flask
             </header>
             <h2><a href="/lab1">Лабораторная 1</a></h2>
-            <h2><a href="/lab2/example">Лабораторная 2</a></h2>
+            <h2><a href="/lab2/">Лабораторная 2</a></h2>
             <footer>
                   &copy; Козицкий Владислав и Штагауэр Максим, ФБИ-12, 3 курс 2023
             </footer>
@@ -37,13 +37,15 @@ def lab1():
       <link rel="stylesheet" href="static/lab1.css">
          <head>
             <title>Козицкий Владислав и Штагауэр Максим. Лабораторная работа 1</title>
+            <p>
+               <a href="/menu">Меню</a>
+            </p>
          </head>
 
          <body style="margin-left: 5%; padding: 50px;">
             <header>
                   НГТУ, ФБ, Лабораторная работа 1
             </header>
-            <a href="/menu">Меню</a>
             <div style="margin-left: 2%; padding: 15px;">
                   Flask — фреймворк для создания веб-приложений на языке
                   программирования Python, использующий набор инструментов
@@ -127,10 +129,13 @@ def python():
 <link rel="stylesheet" href="static/lab1.css">
    <head>
       <title>Козицкий Владислав и Штагауэр Максим. Лабораторные работы</title>
+      <p>
+         <a href="/lab1">Назад</a>
+         <p></p>
+         <a href="/menu">Меню</a>
+      </p>
    </head>
-   <a href="/lab1">Назад</a>
-   <p></p>
-   <a href="/menu">Меню</a>
+   
    
    <body style="margin-left: 5%; padding: 50px;">
       <h1>Python - это   </h1>
@@ -145,6 +150,10 @@ def python():
    </body>
 </html>
    '''
+
+@app.route('/lab2/') 
+def lab2():
+   return render_template('lab2.html')
 
 @app.route('/lab2/example') 
 def example():
@@ -184,6 +193,7 @@ def example():
                           name=name, nomerLab=nomerLab, grupa=grupa, kyrs=kyrs,
                           fruits=fruits, books=books)
 
-@app.route('/lab2/') 
-def lab2():
-   return render_template('lab2.html')
+
+@app.route('/lab2/info') 
+def info():
+   return render_template('lab2INFO.html')
