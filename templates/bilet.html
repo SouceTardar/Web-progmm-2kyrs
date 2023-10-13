@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3
+<p>
+    <a href="/menu">Меню</a>
+</p>
+<p>
+    <a href="/lab3/order">Назад</a>
+</p>
+<style>
+    .bilet{
+        font-family: sans-serif;
+        font-size: 24px;
+        padding: 5px;
+    }
+    .error{
+        color: blue;
+        background-color: red
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+    <h1>Форма покупки железнодорожного билета</h1>
+    <form action="/lab3/ticket" class="bilet">
+        <div>
+            <label for="fio">ФИО пассажира:</label>
+            <input type="text" name="fio" value="ФИО">
+            <span class="error">{{ errors2.fio }}</span>
+        </div>
+
+        <div>
+            <label for="type">Тип:</label>
+    
+            <select name="type" required>
+                <option value="детский">Детский</option>
+                <option value="взрослый">Взрослый</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="seat">Полка:</label>
+            <select name="seat" required>
+                <option value="нижняя">Нижняя</option>
+                <option value="верхняя">Верхняя</option>
+                <option value="верхняя боковая">Верхняя боковая</option>
+                <option value="нижняя боковая">Нижняя боковая</option>
+            </select>
+        </div>
+
+        
+        <div>
+            <label for="luggage">С багажом:</label>
+            <select name="luggage">
+                <option value="YES"{{ luggage == 'YES' and 'selected' }}>Да</option>
+                <option value="NO"{{ luggage == 'NO' and 'selected' }}>Нет</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="age">Возраст:</label>
+            <input type="number" name="age" min="18" max="120">
+            <span class="error">{{ errors2.age }}</span>
+        </div>
+
+        <div>
+            <label for="departure">Пункт выезда:</label>
+            <input type="text" name="departure" required>
+            <span class="error">{{ errors2.departure }}</span>
+        </div>
+
+        <div>
+            <label for="destination">Пункт назначения:</label>
+            <input type="text" name="destination" required>
+            <span class="error">{{ errors2.destination }}</span>
+        </div>
+
+        <div>
+            <label for="date">Дата поездки:</label>
+            <input type="date" name="date" required>
+            <span class="error">{{ errors2.data }}</span>
+        </div>
+
+        <div>
+            <button type="submit">Купить билет</button>
+        </div>
+    </form>
+
+   
+
+{% endblock %}

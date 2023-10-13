@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 3
+<p>
+    <a href="/menu">Меню</a>
+</p>
+<p>
+    <a href="/lab3/bilet">Назад</a>
+</p>
+<style>
+    .bilet{
+        font-family: sans-serif;
+        font-size: 24px;
+        padding: 5px;
+    }
+</style>
+
+{% endblock %}
+
+{% block main %}
+    <h1>Билет:</h1>
+    <form class="bilet">
+            <p>
+                ФИО пассажира: "{{ fio }}"
+            </p>
+            <p>
+                Тип: "{{ type }}"
+            </p>
+            <p>
+                Полка: "{{ seat }}" 
+            </p>
+            <p>
+                С багажом: "{{ 'Да' if luggage == 'YES' else 'Нет' }}"
+            </p>
+            <p>
+                Возраст: {{ age }}лет
+            </p>
+            <p>
+                Пункт выезда: г.{{ departure }}
+            </p>
+            <p>
+                Пункт назначения: г.{{ destination }}
+            </p>
+            <p>
+                Дата поездки: "{{ date }}"
+            </p>
+    </form>
+
+    <button>
+        <a href="/lab3/bilet">Заказать билет</a>
+    </button>
+
+{% endblock %}

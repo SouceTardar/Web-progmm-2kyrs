@@ -13,14 +13,12 @@ def form1():
     if user == '':
         errors['user'] = 'Напишите имя!'
 
-    
-    errors2 = {}
     age = request.args.get('age')
     if age == '':
-        errors2['age'] = 'Заполните поле'
+        errors['age'] = 'Заполните поле'
 
     sex = request.args.get('sex')
-    return render_template('form1.html', user = user, age = age, sex = sex, errors = errors, errors2 = errors2)
+    return render_template('form1.html', user = user, age = age, sex = sex, errors = errors)
 
 @lab3.route('/lab3/order')
 def order():
@@ -47,3 +45,46 @@ def pay():
 @lab3.route('/lab3/success')
 def success():
     return render_template('success.html')
+
+
+@lab3.route('/lab3/bilet')
+def bilet():
+    errors2={}
+    fio = request.args.get("fio")
+    if fio == '':
+        errors2['fio'] = 'Пожалуйста, заполните все поля!'
+    type = request.args.get("type")
+    if type == '':
+        errors2['type'] = 'Пожалуйста, заполните все поля!'
+    seat = request.args.get("seat")
+    if seat == '':
+        errors2['seat'] = 'Пожалуйста, заполните все поля!'
+    luggage = request.args.get("luggage")
+    if luggage == '':
+        errors2['luggage'] = 'Пожалуйста, заполните все поля!'
+    age = request.args.get("age")
+    if age == '':
+        errors2['age'] = 'Пожалуйста, заполните все поля!'
+    departure = request.args.get("departure")
+    if departure == '':
+        errors2['departure'] = 'Пожалуйста, заполните все поля!'
+    destination = request.args.get("destination")
+    if destination == '':
+        errors2['destination'] = 'Пожалуйста, заполните все поля!'
+    date = request.args.get("date")
+    if date == '':
+        errors2['date'] = 'Пожалуйста, заполните все поля!'
+    return render_template('bilet.html', fio=fio, type=type, seat=seat, luggage=luggage, age=age, departure=departure, destination=destination, date=date, errors2=errors2)
+
+
+@lab3.route('/lab3/ticket')
+def ticket():
+    fio = request.args.get("fio")
+    type = request.args.get("type")
+    seat = request.args.get("seat")
+    luggage = request.args.get("luggage")
+    age = request.args.get("age")
+    departure = request.args.get("departure")
+    destination = request.args.get("destination")
+    date = request.args.get("date")
+    return render_template('ticket.html', fio=fio, type=type, seat=seat, luggage=luggage, age=age, departure=departure, destination=destination, date=date)
