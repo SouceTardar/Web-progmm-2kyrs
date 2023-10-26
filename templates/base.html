@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Козицкий Владислав и Штагауэр Максим. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% if request.cookies.get('color') %}
+    <style>
+        body {
+            color: {{ request.cookies.get('color') }};
+        }
+    </style>
+    {% endif %}
 </head>
 <body>
     <header>

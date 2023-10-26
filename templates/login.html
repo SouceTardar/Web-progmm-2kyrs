@@ -21,12 +21,12 @@
     <form action="" method="POST">
         <div>
             <label for="username">Пользователь</label>
-            <input type="text" id="username" name="username" value="{{ username }}">
+            <input type="text" id="username" name="username" value="{{ username or ''}}">
             <span class="error">{{ errors.username }}</span>
         </div>
         <div>
             <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" value="{{ password }}">
+            <input type="password" id="password" name="password" value="{{ password or ''}}">
             <span class="error">{{ errors.password }}</span>
         </div>
         <div>
