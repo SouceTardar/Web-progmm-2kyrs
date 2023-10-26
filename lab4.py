@@ -24,8 +24,6 @@ def login():
 
 @lab4.route('/lab4/fridge', methods = ['GET', 'POST'])
 def fridge():
-
-
     return render_template('fridge.html')
 
 @lab4.route("/set_temperature", methods=["POST"])
