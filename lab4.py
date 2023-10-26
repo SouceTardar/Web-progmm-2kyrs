@@ -89,7 +89,7 @@ def process_order():
 
     return f"<h3>{message}</h3><br><a href='/lab4/zerno'>Вернуться к заказу</a>"
 
-@lab4.route('/lab4/cookies' methods = ['GET', 'POST'])
+@lab4.route('/lab4/cookies', methods = ['GET', 'POST'])
 def cookies():
     if request.method == 'GET':
         return render_template('cookies.html' )
