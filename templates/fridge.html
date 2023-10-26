@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 4
+<p>
+    <a href="/lab4/">Назад</a>
+</p>
+<style>
+    
+</style>
+
+{% endblock %}
+
+{% block main %}
+    <form action="/set_temperature" method="post">
+        <label for="temperature">Температура: </label>
+        <input type="number" id="temperature" name="temperature" required>
+        <input type="submit" value="Установить температуру">
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% elif success %}
+        <p>Установлена температура: {{ temperature }}°C</p>
+        {% if flakes == 1 %}
+            <img src="static\sneginka.png" width="60" height="60">
+        {% elif flakes == 2 %}
+            <img src="static\sneginka.png" width="60" height="60">
+            <img src="static\sneginka.png" width="60" height="60">
+        {% elif flakes == 3 %}
+            <img src="static\sneginka.png" width="60" height="60">
+            <img src="static\sneginka.png" width="60" height="60">
+            <img src="static\sneginka.png" width="60" height="60">
+        {% endif %}
+    {% endif %}
+{% endblock %}
