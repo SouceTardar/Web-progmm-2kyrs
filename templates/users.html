@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 5
+<p>
+    <a href="/menu">Меню</a>
+</p>
+{% endblock %}
+
+{% block main %}
+    <body>
+        <h1>Список пользователей:</h1>
+        <ul style="font-size: 24px;">
+            {% for user in users %}
+            <li>
+                {{ user[0] }}
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+{% endblock %}
