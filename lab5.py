@@ -68,3 +68,39 @@ def regPage():
 
 @lab5.route('/lab5/login', methods = ['GET', 'POST'])
 def logPage():
+    errors = "";
+
+    if request.method == "GET":
+        return render_template('login5lab.html', errors=errors)
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+    
+    if not (username or password):
+        errors = "Пожалуйтса, заполните все поля"
+        return render_template("login5lab.html", errors=errors)
+    
+    conn = dbConnect()
+    cur = conn.cursor() 
+
+    cur.execute(f"SELECT id, password FROM users WHERE username = '{username}';")
+
+    result = cur.fetchone()
+
+    if result is None:
+        errors = "Неправильный логин или пароль"
+        dbClose(cur, conn)
+        return render_template("login5lab.html", errors=errors)
+
+    userID, hashPassword = result
+
+    if check_password_hash(hashPassword, password):
+        session['id'] = userID
+        session['username'] = username
+        dbClose(cur, conn)
+        return redirect('/lab5')
+    else:
+        errors = "Неправильный логин или пароль"
+        return render_template("login5lab.html", errors=errors)
+    
+#HelloWorld
