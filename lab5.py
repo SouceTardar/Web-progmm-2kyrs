@@ -119,15 +119,19 @@ def creatArticle():
         if request.method == 'POST':
             text_article = request.form.get('text_article')
             title = request.form.get('title_article')
+
             if len(text_article) == 0:
                 errors = "Заполните текст"
                 return render_template('new_article.html', errors=errors, username=visibleUser)
             
-    conn = dbConnect()
-    cur = conn.cursor() 
+            conn = dbConnect()
+            cur = conn.cursor() 
 
-    cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({userID}, '{title}', '{text_article}') RETURNING id")
-
-    dbClose(cur, conn)
+            cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({userID}, '{title}', '{text_article}') RETURNING id")
+            new_article_id = cur.fetchone()[0]
+            conn.commit()
+            dbClose(cur, conn)
+            return redirect(f'/lab5/articles/{new_article_id}')
 
     return redirect('/lab5/login')
+
