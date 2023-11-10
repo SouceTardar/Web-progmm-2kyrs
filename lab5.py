@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, Blueprint, redirect
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask import Blueprint, render_template, request, Blueprint, redirect, session
 import psycopg2
 
 
@@ -20,6 +21,7 @@ def dbClose(surcor, connection):
 @lab5.route('/lab5/')
 def main():  
     visibleUser = 'Anon'
+    visibleUser = session.get('username')
     return render_template('lab5.html', username=visibleUser)
 
 @lab5.route('/lab5/users')
@@ -46,6 +48,7 @@ def regPage():
         print(errors)
         return render_template("register.html", errors=errors)
     
+    hashPassword = generate_password_hash(password)
     conn = dbConnect()
     cur = conn.cursor()
 
@@ -56,7 +59,7 @@ def regPage():
         dbConnect(cur, conn)
         return render_template('register.html', errors=errors)
     
-    cur.execute(f"INSERT INTO users (username, password) VALUES ('{username}', '{password}');")
+    cur.execute(f"INSERT INTO users (username, password) VALUES ('{username}', '{hashPassword}');")
 
     conn.commit()
     dbClose(cur, conn)
@@ -65,4 +68,3 @@ def regPage():
 
 @lab5.route('/lab5/login', methods = ['GET', 'POST'])
 def logPage():
-    return render_template('lab5login.html')
