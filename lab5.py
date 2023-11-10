@@ -104,3 +104,30 @@ def logPage():
         return render_template("login5lab.html", errors=errors)
     
 #HelloWorld
+
+@lab5.route('/lab5/new_article', methods = ['GET', 'POST'])
+def creatArticle():
+    visibleUser = session.get('username')
+    errors = ""
+
+    userID = session.get('id')
+
+    if userID is not None:
+        if request.method == 'GET':
+            return render_template('new_article.html', username=visibleUser)
+        
+        if request.method == 'POST':
+            text_article = request.form.get('text_article')
+            title = request.form.get('title_article')
+            if len(text_article) == 0:
+                errors = "Заполните текст"
+                return render_template('new_article.html', errors=errors, username=visibleUser)
+            
+    conn = dbConnect()
+    cur = conn.cursor() 
+
+    cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({userID}, '{title}', '{text_article}') RETURNING id")
+
+    dbClose(cur, conn)
+
+    return redirect('/lab5/login')
