@@ -83,7 +83,7 @@ def logPage():
     conn = dbConnect()
     cur = conn.cursor() 
 
-    cur.execute(f"SELECT id, password FROM users WHERE username = '{username}';")
+    cur.execute(f"SELECT id, password FROM users WHERE username = %s and username = %s", (username);")
 
     result = cur.fetchone()
 
@@ -135,3 +135,23 @@ def creatArticle():
 
     return redirect('/lab5/login')
 
+@lab5.route('/lab5/new_article/<string:article_id>')
+def getArticle(article_id):
+    userID = session.get('id')
+
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()     
+
+        cur.execute(f"SELECT title, article_text from articles WHERE id = %s and user_id = %s", (article_id, userID))
+
+        articleBody = cur.fetchone()
+
+        dbClose(cur, conn)
+
+        if articleBody is None:
+            return "Not found"
+        
+        text = articleBody[1].splitlines()
+
+        return render_template('articleN.html', article_text = text, article_title=articleBody[0], username = session.get('username'))
