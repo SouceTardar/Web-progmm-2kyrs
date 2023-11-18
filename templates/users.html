@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
 {% block lab %}Лабораторная работа 5
+<div style="display: inline-block; position: relative; margin-left: 35%; color: black; text-decoration: none; top: 25px; font-size: 16px;">
+    <label style="font-size: 24px;">
+        База Знаний
+    </label>
+    <a href="/lab5/user/articles" style="border: 0px solid; margin-left: 50px; text-decoration: none; color: black;">Просмотреть заметки</a>
+    <a href="/lab5/new_article" style="border: 0px solid; margin-left: 10px; text-decoration: none; color: black;">Создать заметку</a>
+    <a href="/lab5/login" style="border: 1px solid; border-radius: 8px; padding: 5px; margin-left: 50px; text-decoration: none; color: black;">Войти</a></li>
+    <a href="/lab5/register" style="border: 1px solid; border-radius: 8px; padding: 5px; color: white; background-color: blue; text-decoration: none;">Зарегистрироваться</a>
+    <label>{{ username }}</label>
+    <a href="/lab5/logout"><img src="/static/exit.png" width="30px" height="15px"></a>
+</div>
 <p>
     <a href="/menu">Меню</a>
 </p>

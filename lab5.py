@@ -173,3 +173,8 @@ def user_articles():
             return "Not found"
 
         return render_template('user_articles.html', username = session.get('username'), article_title=articleBody)
+    
+@lab5.route('/lab5/logout', methods=['GET'])
+def logout():
+    session.clear()
+    return 'You have been logged out'
