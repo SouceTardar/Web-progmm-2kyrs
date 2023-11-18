@@ -1,5 +1,5 @@
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask import Blueprint, render_template, request, Blueprint, redirect, session
+from flask import Blueprint, render_template, request, Blueprint, redirect, session, url_for
 import psycopg2
 
 
@@ -83,7 +83,7 @@ def logPage():
     conn = dbConnect()
     cur = conn.cursor() 
 
-    cur.execute(f"SELECT id, password FROM users WHERE username = %s and username = %s", (username);")
+    cur.execute(f"SELECT id, password FROM users WHERE username = '{username}';")
 
     result = cur.fetchone()
 
@@ -135,7 +135,7 @@ def creatArticle():
 
     return redirect('/lab5/login')
 
-@lab5.route('/lab5/new_article/<string:article_id>')
+@lab5.route('/lab5/new_article/<int:article_id>')
 def getArticle(article_id):
     userID = session.get('id')
 
@@ -143,7 +143,7 @@ def getArticle(article_id):
         conn = dbConnect()
         cur = conn.cursor()     
 
-        cur.execute(f"SELECT title, article_text from articles WHERE id = %s and user_id = %s", (article_id, userID))
+        cur.execute(f"SELECT title, article_text FROM articles WHERE id = %s and user_id = %s", (article_id, userID))
 
         articleBody = cur.fetchone()
 
@@ -155,3 +155,21 @@ def getArticle(article_id):
         text = articleBody[1].splitlines()
 
         return render_template('articleN.html', article_text = text, article_title=articleBody[0], username = session.get('username'))
+
+@lab5.route('/lab5/user/articles', methods = ['GET', 'POST'])
+def user_articles():
+    userID = session.get('id')
+    title = request.form.get('title_article')
+
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()     
+
+        cur.execute(f"SELECT title FROM articles WHERE user_id = {userID}")
+
+        articleBody = cur.fetchall()
+
+        if articleBody is None:
+            return "Not found"
+
+        return render_template('user_articles.html', username = session.get('username'), article_title=articleBody)
