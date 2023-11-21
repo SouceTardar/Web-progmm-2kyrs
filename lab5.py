@@ -159,15 +159,15 @@ def getArticle(article_id):
 @lab5.route('/lab5/user/articles', methods = ['GET', 'POST'])
 def user_articles():
     userID = session.get('id')
-    title = request.form.get('title_article')
 
     if userID is not None:
         conn = dbConnect()
         cur = conn.cursor()     
 
-        cur.execute(f"SELECT title FROM articles WHERE user_id = {userID}")
+        cur.execute(f"SELECT title, id FROM articles WHERE user_id = {userID}")
 
         articleBody = cur.fetchall()
+        
 
         if articleBody is None:
             return "Not found"
