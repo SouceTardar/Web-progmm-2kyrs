@@ -178,3 +178,16 @@ def user_articles():
 def logout():
     session.clear()
     return 'You have been logged out'
+
+@lab5.route('/lab5/publish_article', methods=['GET'])
+def publish_article():
+    conn = dbConnect()
+    cur = conn.cursor()
+
+    cur.execute(f"SELECT title, id FROM articles")
+    articleBody = cur.fetchall()
+    
+    conn.close()
+
+    return render_template('publish_article.html', article_title=articleBody)
+
