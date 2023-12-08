@@ -17,3 +17,14 @@ class articles(db.Model):
     is_favorite = db.Column(db.Boolean)
     is_public = db.Column(db.Boolean)
     likes = db.Column(db.Integer)
+
+    def __repr__(self):
+        return f"title:{self.article_title}, article_text:{self.article_text}"
+    
+@lab6.route("/lab6")
+def mainpage():
+    try:
+        username = (users.query.filter_by(id=current_user.id).first()).username
+        return render_template("lab6.html", username = username)
+    except:
+         return render_template("lab6.html", username = "Аноним")
