@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 5
+<div style="display: inline-block; position: relative; margin-left: 55%; color: black; text-decoration: none; top: 25px; font-size: 16px;">
+    <label style="font-size: 24px;">
+        База Знаний
+    </label>
+    <a href="" style="border: 0px solid; margin-left: 50px; text-decoration: none; color: black;">Просмотреть заметки</a>
+    <a href="" style="border: 0px solid; margin-left: 10px; text-decoration: none; color: black;">Создать заметку</a>
+    <a href="/lab6/login" style="border: 1px solid; border-radius: 8px; padding: 5px; margin-left: 50px; text-decoration: none; color: black;">Войти</a></li>
+    <a href="/lab6/register" style="border: 1px solid; border-radius: 8px; padding: 5px; color: white; background-color: blue; text-decoration: none;">Зарегистрироваться</a>
+    <label>{{ username }}</label>
+    <a href=""><img src="/static/exit.png" width="30px" height="15px"></a>
+</div>
+<p>
+    <a href="/menu">Меню</a>
+</p>
+
+
+{% endblock %}
+
+{% block main %}
+
+<body>
+    <h1>БД</h1>
+    <div>Проверки</div>
+    <ol>
+        <li>
+            <a href="/lab6/cheak">Пользователи</a>
+        </li>
+        <li>
+            <a href="/lab6/checkarticles">Статьи</a>
+        </li>
+    </ol>
+ 
+
+</body>
+
+
+{% endblock %}
