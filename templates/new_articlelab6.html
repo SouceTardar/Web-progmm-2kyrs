@@ -16,26 +16,35 @@
 <p>
     <a href="/menu">Меню</a>
 </p>
+<p>
+    <a href="/lab6">Назад</a>
+</p>
 
-
+<style>
+    .error {
+        border: 1px solid;
+        color: white;
+        border-radius: 5px;
+        background-color: red;
+        font-size: 30px;
+    }
+</style>
 {% endblock %}
 
 {% block main %}
+    <span class="error">{{ errors }}</span>
+    <div>
+        <h1>Новая заметка</h1>
 
-<body>
-    <h1>БД</h1>
-    <div>Проверка</div>
-    <ol>
-        <li>
-            <a href="/lab6/cheak">Пользователей</a>
-        </li>
-        <li>
-            <a href="/lab6/checkarticles">Статьей</a>
-        </li>
-    </ol>
- 
-
-</body>
+        <form method="post">
+            <input type="text" name="title_article" placeholder="Название статьи" style="height: 30px; width: 300px;">
+            <p>
+                <textarea name="text_article" placeholder="Тест статьи" style="width: 80%; height: 400px; padding: 10px;"></textarea>
+            </p>
+        <input type="submit" value="Apple"/>
+        </form>
+        
+    </div>
 
 
 {% endblock %}

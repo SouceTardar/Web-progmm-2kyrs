@@ -23,17 +23,14 @@
 {% block main %}
 
 <body>
-    <h1>БД</h1>
-    <div>Проверка</div>
-    <ol>
-        <li>
-            <a href="/lab6/cheak">Пользователей</a>
-        </li>
-        <li>
-            <a href="/lab6/checkarticles">Статьей</a>
-        </li>
-    </ol>
- 
+<h1>Добро пожаловать, {{ username }}!</h1>
+        
+<h2>Ваши заметки:</h2>
+<ul>
+    {% for article in articles_list %}
+        <li style="border: 1px solid; padding: 5px; width: 500px; margin-top: 15px; border-radius: 8px; text-align: center;"><a href="/lab6/articles/{{ article.id }}">{{ article.article_title }}</a></li>
+    {% endfor %}
+</ul>
 
 </body>
 

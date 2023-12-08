@@ -17,25 +17,16 @@
     <a href="/menu">Меню</a>
 </p>
 
-
 {% endblock %}
 
 {% block main %}
+    <div style="margin-left: 200px; margin-right: 200px;">
+        <h1>{{ article_title }}</h1>
 
-<body>
-    <h1>БД</h1>
-    <div>Проверка</div>
-    <ol>
-        <li>
-            <a href="/lab6/cheak">Пользователей</a>
-        </li>
-        <li>
-            <a href="/lab6/checkarticles">Статьей</a>
-        </li>
-    </ol>
- 
 
-</body>
+        {{ article_text }}
 
+
+    </div>
 
 {% endblock %}

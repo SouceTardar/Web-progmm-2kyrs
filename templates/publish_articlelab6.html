@@ -17,25 +17,20 @@
     <a href="/menu">Меню</a>
 </p>
 
-
 {% endblock %}
 
 {% block main %}
-
-<body>
-    <h1>БД</h1>
-    <div>Проверка</div>
-    <ol>
-        <li>
-            <a href="/lab6/cheak">Пользователей</a>
-        </li>
-        <li>
-            <a href="/lab6/checkarticles">Статьей</a>
-        </li>
-    </ol>
- 
-
-</body>
-
-
+    <h1>Список опубликованных статей пользователей</h1>
+    <div>
+        <ul>
+            {% for article in article_published_list %}
+            <li>
+                <a href="/lab6/articles/{{ article.id }}"><h2 style="margin-top: 24px; margin-bottom: 0px;">{{  article.article_title }}</h2></a>
+                <br>Статья(ID): {{ article.id }},
+                <br>Автор(ID): {{ article.user_id }}
+                <br>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
